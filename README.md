@@ -61,7 +61,7 @@ limitations under the License.
 [Coverage-URL]: https://codecov.io/gh/goombaio/ansicolor
 [GoReportCard-Image]: https://goreportcard.com/badge/github.com/goombaio/ansicolor
 [GoReportCard-URL]: https://goreportcard.com/report/github.com/goombaio/ansicolor
-[CII-Image]: https://bestpractices.coreinfrastructure.org/projects/2215/badge
-[CII-URL]: https://bestpractices.coreinfrastructure.org/projects/2215
+[CII-Image]: https://bestpractices.coreinfrastructure.org/projects/2234/badge
+[CII-URL]: https://bestpractices.coreinfrastructure.org/projects/2234
 [GoDoc-Image]: https://godoc.org/github.com/goombaio/ansicolor?status.svg
 [GoDoc-URL]: http://godoc.org/github.com/goombaio/ansicolor
