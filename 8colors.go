@@ -20,16 +20,11 @@ package ansicolor
 import (
 	"fmt"
 	"strconv"
-	"strings"
 )
 
-// Color4bits or Select Graphic Rendition) ...
-func Color4bits(str string, codes ...int) string {
-	strcodes := make([]string, len(codes))
-	for i, code := range codes {
-		strcodes[i] = strconv.Itoa(code)
-	}
-	colorSequence := strings.Join(strcodes, ";")
+// Color8Colors or Select Graphic Rendition) ...
+func Color8Colors(str string, foreground int, background int) string {
+	colorSequence := strconv.Itoa(foreground) + ";" + strconv.Itoa(background)
 
 	result := fmt.Sprintf("%s[%sm", Colorifier.Escape, colorSequence)
 	result += str

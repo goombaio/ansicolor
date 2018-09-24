@@ -17,20 +17,6 @@
 
 package ansicolor
 
-// ColorDepth ...
-type ColorDepth int
-
-const (
-	// Color4Bits ...
-	Color4Bits ColorDepth = 4
-
-	// Color8Bits ...
-	Color8Bits ColorDepth = 8
-
-	// Color24Bits ...
-	Color24Bits ColorDepth = 24
-)
-
 // Colorifier ...
 type colorifier struct {
 	// Escape character
@@ -41,9 +27,6 @@ type colorifier struct {
 
 	// Reset color attributes
 	ResetColors string
-
-	// Color Depth and Bits to use
-	ColorDepth ColorDepth
 
 	// If color is disabled or not
 	noColor bool
@@ -69,22 +52,24 @@ func (c *colorifier) IsColorDisabled() bool {
 	return c.noColor
 }
 
-func (c *colorifier) Color(depth ColorDepth, str string, codes ...int) string {
+func (c *colorifier) Color(colors string, str string, foreground int, background int) string {
 	if c.IsColorDisabled() {
 		return str
 	}
 
 	var result string
 
-	switch depth {
-	case Color4Bits:
-		result = Color4bits(str, codes...)
-	case Color8Bits:
+	switch colors {
+	case "8":
+		result = Color8Colors(str, foreground, background)
+	case "16":
 		result = str
-	case Color24Bits:
+	case "256":
+		result = str
+	case "truecolor":
 		result = str
 	default:
-		result = Color4bits(str, codes...)
+		result = Color8Colors(str, foreground, background)
 	}
 
 	return result

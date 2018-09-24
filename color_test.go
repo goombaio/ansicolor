@@ -50,9 +50,9 @@ func TestColor_EnabledColor(t *testing.T) {
 
 func TestColor_Color(t *testing.T) {
 	str := "A yellow foreground string"
-	expected := "\x1b[33mA yellow foreground string\x1b[0m"
+	expected := "\x1b[33;40mA yellow foreground string\x1b[0m"
 
-	result := ansicolor.Color(str, 33)
+	result := ansicolor.Color(str, 33, 40)
 
 	if result != expected {
 		t.Fatalf("result expected %q but got %q", expected, result)

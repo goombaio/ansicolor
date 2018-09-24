@@ -24,8 +24,6 @@ var (
 		ResetAll:    0,
 		ResetColors: "39;49",
 
-		ColorDepth: Color4Bits,
-
 		noColor: false,
 	}
 )
@@ -41,11 +39,6 @@ func DisableColor() {
 }
 
 // Color ...
-func Color(str string, SRGCodes ...int) string {
-	return Colorifier.Color(Color4Bits, str, SRGCodes...)
-}
-
-// Depth ...
-func Depth(bits ColorDepth) {
-	Colorifier.ColorDepth = bits
+func Color(str string, foreground int, background int) string {
+	return Colorifier.Color("8", str, foreground, background)
 }
