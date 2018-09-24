@@ -19,14 +19,10 @@ package ansicolor
 
 var (
 	// Colorifier ...
-	Colorifier *colorifier
-)
-
-func init() {
 	Colorifier = &colorifier{
 		noColor: false,
 	}
-}
+)
 
 // EnableColor enables color
 func EnableColor() {
