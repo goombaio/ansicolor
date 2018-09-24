@@ -23,6 +23,8 @@ import (
 )
 
 // Color8Colors or Select Graphic Rendition) ...
+//
+// Also check: https://en.wikipedia.org/wiki/ANSI_escape_code#Colorss
 func Color8Colors(str string, foreground int, background int) string {
 	colorSequence := strconv.Itoa(foreground) + ";" + strconv.Itoa(background)
 

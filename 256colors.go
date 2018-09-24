@@ -20,10 +20,9 @@ package ansicolor
 import (
 	"fmt"
 	"strconv"
-	"strings"
 )
 
-// Color8bits or Select Graphic Rendition) with a depth of 8 bits
+// Color256Colors or Select Graphic Rendition) ...
 //
 // ESC[ … 38;5;<n> … m Select foreground color
 // ESC[ … 48;5;<n> … m Select background color
@@ -32,14 +31,13 @@ import (
 //  16-231:  6 × 6 × 6 cube (216 colors): 16 + 36 × r + 6 × g + b (0 ≤ r, g, b ≤ 5)
 // 232-255:  grayscale from black to white in 24 steps
 //
-func Color8bits(str string, codes ...int) string {
-	strcodes := make([]string, len(codes))
-	for i, code := range codes {
-		strcodes[i] = strconv.Itoa(code)
-	}
-	colorSequence := strings.Join(strcodes, ";")
-
-	result := fmt.Sprintf("%s[%sm", Colorifier.Escape, colorSequence)
+// Also check: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+func Color256Colors(str string, foreground int, background int) string {
+	fgColorSequence := "38;5;" + strconv.Itoa(foreground)
+	bgColorSequence := "48;5;" + strconv.Itoa(background)
+	result := ""
+	result += fmt.Sprintf("%s[%sm", Colorifier.Escape, fgColorSequence)
+	result += fmt.Sprintf("%s[%sm", Colorifier.Escape, bgColorSequence)
 	result += str
 	result += fmt.Sprintf("%s[%dm", Colorifier.Escape, Colorifier.ResetAll)
 

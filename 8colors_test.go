@@ -16,3 +16,23 @@
 // under the License.
 
 package ansicolor_test
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/goombaio/ansicolor"
+)
+
+func TestColor_Color_8colors(t *testing.T) {
+	str := "A red foreground string"
+	expected := "\x1b[31;40mA red foreground string\x1b[0m"
+
+	result := ansicolor.Color8Colors(str, 31, 40)
+
+	if result != expected {
+		t.Fatalf("result expected %q but got %q", expected, result)
+	}
+
+	fmt.Println(result)
+}

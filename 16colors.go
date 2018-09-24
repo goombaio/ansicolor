@@ -16,3 +16,21 @@
 // under the License.
 
 package ansicolor
+
+import (
+	"fmt"
+	"strconv"
+)
+
+// Color16Colors or Select Graphic Rendition) ...
+//
+// Also check: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+func Color16Colors(str string, foreground int, background int) string {
+	colorSequence := strconv.Itoa(foreground) + ";" + strconv.Itoa(background)
+
+	result := fmt.Sprintf("%s[%sm", Colorifier.Escape, colorSequence)
+	result += str
+	result += fmt.Sprintf("%s[%dm", Colorifier.Escape, Colorifier.ResetAll)
+
+	return result
+}

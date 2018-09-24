@@ -63,11 +63,12 @@ func (c *colorifier) Color(colors string, str string, foreground int, background
 	case "8":
 		result = Color8Colors(str, foreground, background)
 	case "16":
-		result = str
+		result = Color16Colors(str, foreground, background)
 	case "256":
-		result = str
+		result = Color256Colors(str, foreground, background)
 	case "truecolor":
-		result = str
+		// result = ColorTrueColorColors(str, foreground, background)
+		return str
 	default:
 		result = Color8Colors(str, foreground, background)
 	}

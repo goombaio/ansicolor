@@ -15,34 +15,24 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-package ansicolor_test
+package ansicolor
 
 import (
-	"testing"
-
-	"github.com/goombaio/ansicolor"
+	"fmt"
+	"strconv"
 )
 
-func TestColor_DisableColor(t *testing.T) {
-	ansicolor.DisableColor()
+// ColorTrueColors or Select Graphic Rendition) ...
+//
+// Also check: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+func ColorTrueColors(str string, fr int, fg int, fb int, br int, bg int, bb int) string {
+	fgColorSequence := "38;2;" + strconv.Itoa(fr) + ";" + strconv.Itoa(fg) + ";" + strconv.Itoa(fb)
+	bgColorSequence := "48;2;" + strconv.Itoa(br) + ";" + strconv.Itoa(bg) + ";" + strconv.Itoa(bb)
+	result := ""
+	result += fmt.Sprintf("%s[%sm", Colorifier.Escape, fgColorSequence)
+	result += fmt.Sprintf("%s[%sm", Colorifier.Escape, bgColorSequence)
+	result += str
+	result += fmt.Sprintf("%s[%dm", Colorifier.Escape, Colorifier.ResetAll)
 
-	if ansicolor.Colorifier.IsColorEnabled() {
-		t.Fatalf("Expected to be false but it does not")
-	}
-
-	if !ansicolor.Colorifier.IsColorDisabled() {
-		t.Fatalf("Expected to be true but it does not")
-	}
-}
-
-func TestColor_EnabledColor(t *testing.T) {
-	ansicolor.EnableColor()
-
-	if !ansicolor.Colorifier.IsColorEnabled() {
-		t.Fatalf("Expected to be true but it does not")
-	}
-
-	if ansicolor.Colorifier.IsColorDisabled() {
-		t.Fatalf("Expected to be false but it does not")
-	}
+	return result
 }

@@ -16,3 +16,23 @@
 // under the License.
 
 package ansicolor_test
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/goombaio/ansicolor"
+)
+
+func TestColor_Color_16colors(t *testing.T) {
+	str := "A yellow foreground string"
+	expected := "\x1b[93;100mA yellow foreground string\x1b[0m"
+
+	result := ansicolor.Color16Colors(str, 93, 100)
+
+	if result != expected {
+		t.Fatalf("result expected %q but got %q", expected, result)
+	}
+
+	fmt.Println(result)
+}

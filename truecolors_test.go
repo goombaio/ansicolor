@@ -18,31 +18,21 @@
 package ansicolor_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/goombaio/ansicolor"
 )
 
-func TestColor_DisableColor(t *testing.T) {
-	ansicolor.DisableColor()
+func TestColor_Color_truecolors(t *testing.T) {
+	str := "A green foreground string"
+	expected := "\x1b[38;2;76;168;67m\x1b[48;2;55;55;55mA green foreground string\x1b[0m"
 
-	if ansicolor.Colorifier.IsColorEnabled() {
-		t.Fatalf("Expected to be false but it does not")
+	result := ansicolor.ColorTrueColors(str, 76, 168, 67, 55, 55, 55)
+
+	if result != expected {
+		t.Fatalf("result expected %q but got %q", expected, result)
 	}
 
-	if !ansicolor.Colorifier.IsColorDisabled() {
-		t.Fatalf("Expected to be true but it does not")
-	}
-}
-
-func TestColor_EnabledColor(t *testing.T) {
-	ansicolor.EnableColor()
-
-	if !ansicolor.Colorifier.IsColorEnabled() {
-		t.Fatalf("Expected to be true but it does not")
-	}
-
-	if ansicolor.Colorifier.IsColorDisabled() {
-		t.Fatalf("Expected to be false but it does not")
-	}
+	fmt.Println(result)
 }

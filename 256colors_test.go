@@ -16,3 +16,23 @@
 // under the License.
 
 package ansicolor_test
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/goombaio/ansicolor"
+)
+
+func TestColor_Color_256colors(t *testing.T) {
+	str := "A blue foreground string"
+	expected := "\x1b[38;5;4m\x1b[48;5;238mA blue foreground string\x1b[0m"
+
+	result := ansicolor.Color256Colors(str, 4, 238)
+
+	if result != expected {
+		t.Fatalf("result expected %q but got %q", expected, result)
+	}
+
+	fmt.Println(result)
+}
