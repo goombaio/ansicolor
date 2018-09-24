@@ -26,11 +26,11 @@ import (
 func TestColor_DisableColor(t *testing.T) {
 	ansicolor.DisableColor()
 
-	if ansicolor.Colorifier.IsColorEnabled() != false {
+	if ansicolor.Colorifier.IsColorEnabled() {
 		t.Fatalf("Expected to be false but it does not")
 	}
 
-	if ansicolor.Colorifier.IsColorDisabled() != true {
+	if !ansicolor.Colorifier.IsColorDisabled() {
 		t.Fatalf("Expected to be true but it does not")
 	}
 }
@@ -38,11 +38,11 @@ func TestColor_DisableColor(t *testing.T) {
 func TestColor_EnabledColor(t *testing.T) {
 	ansicolor.EnableColor()
 
-	if ansicolor.Colorifier.IsColorEnabled() != true {
+	if !ansicolor.Colorifier.IsColorEnabled() {
 		t.Fatalf("Expected to be true but it does not")
 	}
 
-	if ansicolor.Colorifier.IsColorDisabled() != false {
+	if ansicolor.Colorifier.IsColorDisabled() {
 		t.Fatalf("Expected to be false but it does not")
 	}
 }

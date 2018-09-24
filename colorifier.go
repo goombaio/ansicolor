@@ -29,10 +29,7 @@ func (c *colorifier) EnableColor() {
 
 // IsColorEnabled ...
 func (c *colorifier) IsColorEnabled() bool {
-	if c.noColor {
-		return false
-	}
-	return true
+	return !c.noColor
 }
 
 // DisableColor ...
@@ -42,8 +39,5 @@ func (c *colorifier) DisableColor() {
 
 // IsColorDisabled ...
 func (c *colorifier) IsColorDisabled() bool {
-	if c.noColor {
-		return true
-	}
-	return false
+	return c.noColor
 }
