@@ -1,6 +1,6 @@
 # ansicolor
 
-ANSI color string colorizer and formatter for Golang.
+ANSI color string colorizer for Golang.
 
 ## Badges
 
@@ -33,7 +33,22 @@ import (
 )
 
 func main() {
+    str := "This is an string"
 
+    result := str
+    fmt.Println(result)
+
+    result = ansicolor.Color8Colors(str, 31, 40)
+    fmt.Println(result)
+
+    result = ansicolor.Color16Colors(str, 93, 100)
+    fmt.Println(result)
+
+    result = ansicolor.Color256Colors(str, 4, 238)
+    fmt.Println(result)
+
+    result = ansicolor.ColorTrueColors(str, 76, 168, 67, 55, 55, 55)
+    fmt.Println(result)
 }
 ```
 
