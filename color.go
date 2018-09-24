@@ -1,4 +1,4 @@
-// Copyright 2018, gossiper project Authors. All rights reserved.
+// Copyright 2018, Goomba project Authors. All rights reserved.
 //
 // Licensed to the Apache Software Foundation (ASF) under one or more
 // contributor license agreements.  See the NOTICE file distributed with this
@@ -20,6 +20,12 @@ package ansicolor
 var (
 	// Colorifier ...
 	Colorifier = &colorifier{
+		Escape:      "\x1b",
+		ResetAll:    0,
+		ResetColors: "39;49",
+
+		ColorDepth: Color4Bits,
+
 		noColor: false,
 	}
 )
@@ -35,6 +41,11 @@ func DisableColor() {
 }
 
 // Color ...
-func Color(str string) string {
-	return str
+func Color(str string, SRGCodes ...int) string {
+	return Colorifier.Color(Color4Bits, str, SRGCodes...)
+}
+
+// Depth ...
+func Depth(bits ColorDepth) {
+	Colorifier.ColorDepth = bits
 }

@@ -1,4 +1,4 @@
-// Copyright 2018, gossiper project Authors. All rights reserved.
+// Copyright 2018, Goomba project Authors. All rights reserved.
 //
 // Licensed to the Apache Software Foundation (ASF) under one or more
 // contributor license agreements.  See the NOTICE file distributed with this
@@ -17,36 +17,23 @@
 
 package ansicolor
 
-/*
 import (
 	"fmt"
 	"strconv"
 	"strings"
 )
 
-const (
-	// escape character
-	escape = "\x1b"
-
-	// reset all attributes sequence
-	resetAllAttributes = 0
-
-	// reset onnly colors sequeance
-	resetColors = "39;49"
-)
-
-// SGR or Select Graphic Rendition) ...
-func SGR(str string, codes ...int) string {
+// Color4bits or Select Graphic Rendition) ...
+func Color4bits(str string, codes ...int) string {
 	strcodes := make([]string, len(codes))
 	for i, code := range codes {
 		strcodes[i] = strconv.Itoa(code)
 	}
 	colorSequence := strings.Join(strcodes, ";")
 
-	result := fmt.Sprintf("%s[%sm", escape, colorSequence)
+	result := fmt.Sprintf("%s[%sm", Colorifier.Escape, colorSequence)
 	result += str
-	result += fmt.Sprintf("%s[%dm", escape, resetAllAttributes)
+	result += fmt.Sprintf("%s[%dm", Colorifier.Escape, Colorifier.ResetAll)
 
 	return result
 }
-*/

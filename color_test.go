@@ -1,4 +1,4 @@
-// Copyright 2018, gossiper project Authors. All rights reserved.
+// Copyright 2018, Goomba project Authors. All rights reserved.
 //
 // Licensed to the Apache Software Foundation (ASF) under one or more
 // contributor license agreements.  See the NOTICE file distributed with this
@@ -18,6 +18,7 @@
 package ansicolor_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/goombaio/ansicolor"
@@ -48,11 +49,14 @@ func TestColor_EnabledColor(t *testing.T) {
 }
 
 func TestColor_Color(t *testing.T) {
-	str := "This is an string"
+	str := "A yellow foreground string"
+	expected := "\x1b[33mA yellow foreground string\x1b[0m"
 
-	result := ansicolor.Color(str)
+	result := ansicolor.Color(str, 33)
 
-	if result != str {
-		t.Fatalf("result expected %q but got %q", str, result)
+	if result != expected {
+		t.Fatalf("result expected %q but got %q", expected, result)
 	}
+
+	fmt.Println(result)
 }

@@ -1,4 +1,4 @@
-// Copyright 2018, gossiper project Authors. All rights reserved.
+// Copyright 2018, Goomba project Authors. All rights reserved.
 //
 // Licensed to the Apache Software Foundation (ASF) under one or more
 // contributor license agreements.  See the NOTICE file distributed with this
@@ -17,8 +17,35 @@
 
 package ansicolor
 
+// ColorDepth ...
+type ColorDepth int
+
+const (
+	// Color4Bits ...
+	Color4Bits ColorDepth = 4
+
+	// Color8Bits ...
+	Color8Bits ColorDepth = 8
+
+	// Color24Bits ...
+	Color24Bits ColorDepth = 24
+)
+
 // Colorifier ...
 type colorifier struct {
+	// Escape character
+	Escape string
+
+	// Reset all attributes
+	ResetAll int
+
+	// Reset color attributes
+	ResetColors string
+
+	// Color Depth and Bits to use
+	ColorDepth ColorDepth
+
+	// If color is disabled or not
 	noColor bool
 }
 
@@ -40,4 +67,25 @@ func (c *colorifier) DisableColor() {
 // IsColorDisabled ...
 func (c *colorifier) IsColorDisabled() bool {
 	return c.noColor
+}
+
+func (c *colorifier) Color(depth ColorDepth, str string, codes ...int) string {
+	if c.IsColorDisabled() {
+		return str
+	}
+
+	var result string
+
+	switch depth {
+	case Color4Bits:
+		result = Color4bits(str, codes...)
+	case Color8Bits:
+		result = str
+	case Color24Bits:
+		result = str
+	default:
+		result = Color4bits(str, codes...)
+	}
+
+	return result
 }
