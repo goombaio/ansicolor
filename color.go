@@ -23,22 +23,5 @@ var (
 		Escape:      "\x1b",
 		ResetAll:    0,
 		ResetColors: "39;49",
-
-		noColor: false,
 	}
 )
-
-// EnableColor enables color
-func EnableColor() {
-	Colorifier.EnableColor()
-}
-
-// DisableColor disables color
-func DisableColor() {
-	Colorifier.DisableColor()
-}
-
-// Color ...
-func Color(str string, foreground int, background int) string {
-	return Colorifier.Color("8", str, foreground, background)
-}
