@@ -15,30 +15,4 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-package ansicolor
-
-var (
-	// Colorifier ...
-	Colorifier *colorifier
-)
-
-func init() {
-	Colorifier = &colorifier{
-		noColor: false,
-	}
-}
-
-// EnableColor enables color
-func EnableColor() {
-	Colorifier.EnableColor()
-}
-
-// DisableColor disables color
-func DisableColor() {
-	Colorifier.DisableColor()
-}
-
-// Color ...
-func Color(str string) string {
-	return str
-}
+package ansicolor_test

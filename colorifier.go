@@ -17,28 +17,33 @@
 
 package ansicolor
 
-var (
-	// Colorifier ...
-	Colorifier *colorifier
-)
+// Colorifier ...
+type colorifier struct {
+	noColor bool
+}
 
-func init() {
-	Colorifier = &colorifier{
-		noColor: false,
+// EnableColor ...
+func (c *colorifier) EnableColor() {
+	c.noColor = false
+}
+
+// IsColorEnabled ...
+func (c *colorifier) IsColorEnabled() bool {
+	if c.noColor {
+		return false
 	}
+	return true
 }
 
-// EnableColor enables color
-func EnableColor() {
-	Colorifier.EnableColor()
+// DisableColor ...
+func (c *colorifier) DisableColor() {
+	c.noColor = true
 }
 
-// DisableColor disables color
-func DisableColor() {
-	Colorifier.DisableColor()
-}
-
-// Color ...
-func Color(str string) string {
-	return str
+// IsColorDisabled ...
+func (c *colorifier) IsColorDisabled() bool {
+	if c.noColor {
+		return true
+	}
+	return false
 }
