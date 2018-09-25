@@ -73,6 +73,7 @@ jobs:
       # specify any bash command here prefixed with `run: `
       - run: GO111MODULE=off go get -u github.com/alecthomas/gometalinter
       - run: GO111MODULE=off gometalinter --update --install
+      - run: go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
       - run: make deps
       - run: make dev-deps 
       - run: make lint
