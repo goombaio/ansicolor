@@ -52,7 +52,7 @@ jobs:
       - run: make dev-deps
       - run: make benchmark
 
-  benchmark:
+  lint:
     docker:
       # specify the version
       - image: circleci/golang:latest
