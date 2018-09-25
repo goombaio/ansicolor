@@ -73,6 +73,11 @@ jobs:
       # specify any bash command here prefixed with `run: `
       - run: make deps
       - run: make dev-deps
+      - run: cd $HOME
+      - run: go get -u github.com/alecthomas/gometalinter
+      - run: gometalinter --update --install
+      - run: go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+      - run: cd ~/src/github.com/goombaio/ansicolor 
       - run: make lint
 
 workflows:

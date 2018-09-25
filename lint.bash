@@ -8,7 +8,7 @@ set -o pipefail
 
 if [ ! $(command -v gometalinter) ]
 then
-	go get github.com/alecthomas/gometalinter
+	go get -u github.com/alecthomas/gometalinter
 	gometalinter --update --install
 fi
 
@@ -33,7 +33,7 @@ echo
 
 if [ ! $(command -v golangci-lint) ]
 then
-	go get github.com/golangci/golangci-lint/cmd/golangci-lint
+	go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
 fi
 
 
